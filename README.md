@@ -64,6 +64,7 @@ mini-projects/
 
 - Rust Setup: ✅
 - Primitive Data Types: ✅
+- Compound Data Types: 
 - Variables & Mutability: ⏳
 - Functions: ⏳
 - Ownership: ⏳
