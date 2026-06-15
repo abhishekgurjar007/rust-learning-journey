@@ -309,4 +309,127 @@ Characteristics:
 
 Today I learned Rust's compound data types: Arrays, Tuples, Slices, Strings, and String Slices. I practiced creating collections, accessing elements, borrowing data through slices, understanding ownership with Strings, and using Debug formatting for printing complex data structures.
 
+---
+
+## Mutable String Example
+
+```rust
+let mut name = String::from("Abhishek");
+name.push_str(" Gurjar");
+
+println!("My name is {}", name);
+```
+
+### Explanation
+
+- `String::from()` creates an owned `String`
+- `mut` makes the variable mutable
+- `push_str()` appends a string slice (`&str`) to the existing `String`
+- The original `String` grows dynamically
+
+Output:
+
+```text
+My name is Abhishek Gurjar
+```
+
+---
+
+## Borrowing a String as a String Slice
+
+```rust
+let name2: String = String::from("Patrick Jane");
+let name2_slice: &str = &name2;
+
+println!("My name is {}", name2_slice);
+```
+
+### Explanation
+
+- `name2` is an owned `String`
+- `&name2` creates an immutable borrow of the `String`
+- `name2_slice` is a string slice (`&str`)
+- No new memory is allocated
+- The slice points to the data owned by `name2`
+
+Output:
+
+```text
+My name is Patrick Jane
+```
+
+---
+
+## Slicing Part of a String
+
+```rust
+let name3_slice: &str = &name2[0..7];
+
+println!("Hii there, {}", name3_slice);
+```
+
+### Explanation
+
+- `0..7` creates a slice from index `0` up to, but not including, index `7`
+- The slice contains:
+
+```text
+Patrick
+```
+
+- String slices work with byte indices
+- Rust strings are UTF-8 encoded, so slice boundaries must be valid UTF-8 boundaries
+
+Output:
+
+```text
+Hii there, Patrick
+```
+
+---
+
+## Why Can't We Index Strings Directly?
+
+The following code is invalid:
+
+```rust
+println!("{}", name2[0]);
+```
+
+Rust does not allow direct string indexing because:
+
+- Strings are stored as UTF-8
+- A single character can occupy multiple bytes
+- Constant-time indexing is not guaranteed
+
+Instead, use string slices:
+
+```rust
+let first_name = &name2[0..7];
+```
+
+---
+
+## Stack vs Heap
+
+### String Slice (`&str`)
+
+```rust
+let language = "Rust";
+```
+
+- The string data is stored in the program binary
+- The reference itself is stored on the stack
+- `&str` does not own the data
+
+### String (`String`)
+
+```rust
+let language = String::from("Rust");
+```
+
+- The `String` structure is stored on the stack
+- The actual string data is stored on the heap
+- `String` owns its data and can grow dynamically
+
 **Status:** Day 02 Completed ✅

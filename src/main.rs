@@ -1,9 +1,9 @@
 fn main(){
     //Strings
-    // let mut name = String::from("Abhishek");
-    // name.push_str(" Gurjar");
+    let mut name = String::from("Abhishek");
+    name.push_str(" Gurjar");
 
-    // println!("My name is {}", name);
+    println!("My name is {}", name);
 
     //&str(String slice)
 
