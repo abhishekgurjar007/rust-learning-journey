@@ -315,3 +315,109 @@ Result: 25
 - Semicolons convert expressions into statements.
 - Variables inside a function are limited to that function's scope.
 - Functions improve code reusability, readability, and maintainability.
+
+## Expressions vs Statements
+
+Understanding the difference between expressions and statements is essential in Rust because Rust is an expression-based language.
+
+### Statements
+
+Statements perform an action but do not return a value.
+
+Examples:
+
+```rust
+let x = 5;
+
+let y = {
+    let z = 10;
+};
+```
+
+In the example above:
+
+- `let x = 5;` is a statement.
+- `let z = 10;` is also a statement.
+
+Statements usually end with a semicolon (`;`).
+
+---
+
+### Expressions
+
+Expressions evaluate to a value.
+
+Examples:
+
+```rust
+5 + 3
+```
+
+```rust
+{
+    let x = 3;
+    x + 1
+}
+```
+
+Expressions can be assigned to variables.
+
+```rust
+fn main() {
+    let y = {
+        let x = 3;
+        x + 1
+    };
+
+    println!("y = {}", y);
+}
+```
+
+### Output
+
+```text
+y = 4
+```
+
+In this example:
+
+- `x + 1` is an expression.
+- The block itself is also an expression.
+- The value `4` is assigned to `y`.
+
+---
+
+### Semicolons Matter
+
+Adding a semicolon converts an expression into a statement.
+
+Correct:
+
+```rust
+fn square(num: i32) -> i32 {
+    num * num
+}
+```
+
+Incorrect:
+
+```rust
+fn square(num: i32) -> i32 {
+    num * num;
+}
+```
+
+The second example causes a compilation error because `num * num;` becomes a statement and does not return a value.
+
+---
+
+### Key Difference
+
+| Statements | Expressions |
+|------------|-------------|
+| Perform actions | Produce values |
+| Do not return values | Always evaluate to a value |
+| Usually end with `;` | Usually do not end with `;` |
+| Cannot be assigned directly | Can be assigned to variables |
+
+> In Rust, `if`, `match`, loops, and code blocks can all act as expressions.
