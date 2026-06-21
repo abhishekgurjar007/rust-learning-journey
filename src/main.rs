@@ -3,5 +3,5 @@ fn main(){
     println!("number is {}", num);
 
     num = 100;
-    println!("number is {}", num);
+    
 }
